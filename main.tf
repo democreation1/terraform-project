@@ -31,12 +31,14 @@ resource "aws_instance" "two" {
   vpc_security_group_ids = [aws_security_group.three.id]
   availability_zone = "ap-south-1b"
   user_data       = <<EOF
+  
 #!/bin/bash
+  
 sudo -i
 yum install httpd -y
 systemctl start httpd
 chkconfig httpd on
-echo "hai all this is my website created by terraform infrastructurte by raham sir server-2" > /var/www/html/index.html
+echo "hai all this is my website created by terraform infrastructurte by harshitha server-2" > /var/www/html/index.html
 EOF
   tags = {
     Name = "server-2"
@@ -46,6 +48,7 @@ EOF
 #creating security group
 resource "aws_security_group" "three" {
   name = "elb-sg"
+  
   ingress {        #inbound
     from_port   = 22
     to_port     = 22
@@ -61,6 +64,14 @@ resource "aws_security_group" "three" {
   }
 
   egress {   #outbound
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]     #Anywhere
+  }
+}
+
+egress {   #outbound
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
