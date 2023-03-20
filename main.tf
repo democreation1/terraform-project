@@ -13,6 +13,7 @@ resource "aws_instance" "one" {
   availability_zone = "ap-south-1a"
   user_data       = <<EOF
 #!/bin/bash
+  
 sudo -i
 yum install httpd -y
 systemctl start httpd
