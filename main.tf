@@ -17,7 +17,7 @@ resource "aws_instance" "one" {
   
 sudo -i
 yum install httpd -y
-systemctl start httpd
+systemctl start httpd #ljskdgvljdfnbkjdnb
 chkconfig httpd on  #chkconfig means never stop the service...
 echo "hai all this is my app created by terraform infrastructurte by HARSHITHA server-1" > /var/www/html/index.html
 EOF         #End Of the File
